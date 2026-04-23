@@ -6,6 +6,11 @@
  * 请你将两个数相加，并以相同形式返回一个表示和的链表。
  * 你可以假设除了数字 0 之外，这两个数都不会以 0 开头。
  **/
+
+
+/**
+ * 有时候我们正着想太抽象，不如从结果反推，怎么通过一个函数的嵌套调用组织出我想要的效果，然后去尝试实现这个函数，或许会好一点。
+ */
 public class 两数相加 {
 
     public static void main(String[] args) {
@@ -21,6 +26,12 @@ public class 两数相加 {
         ListNode l8 = new ListNode(9, l7);
 
         ListNode l9 = new ListNode(9, null);
+
+        ListNode l10 = new ListNode(9, null);
+        ListNode l11 = new ListNode(8, l10);
+
+        ListNode l12 = new ListNode(5, null);
+        ListNode l13 = new ListNode(4, l12);
 
         // 7435 5347
         // 564   465
@@ -40,7 +51,8 @@ public class 两数相加 {
         // 5812
 
         // ListNode listNode = addTwoNumbers(l3, l6);
-        ListNode listNode = addTwoNumbers(l8, l9);
+        // ListNode listNode = addTwoNumbers(l8, l9); // 801
+        ListNode listNode = digui(l11, l13); // 251
         while (listNode != null) {
             System.out.print(listNode.val);
             listNode = listNode.next;
@@ -98,7 +110,69 @@ public class 两数相加 {
         return head;
     }
 
-    static class ListNode {
+    /**
+     * 89
+     * 45
+     * digui(8, 4)
+     * sum:carry:0
+     * sum:0+8
+     * sum:8+4
+     * v:12 % 10 = 2
+     * carry:12 / 10 = 1
+     * return (2, didui(9, 5))
+     * ---
+     * didui(9, 5)
+     * sum:carry:1
+     * sum:1+9
+     * sum:10+5
+     * v:15 % 10 = 5
+     * carry:15 / 10 = 1
+     * return (5, digui(null, null))
+     * ---
+     * digui(null, null)
+     * sum:carry:1
+     * sum:1+0
+     * sum:1+0
+     * v:1 % 10 = 1
+     * carry:1 / 10 = 0
+     * return (1, digui(null, null))
+     * ---
+     * digui(null,null)
+     * return null;
+     * 重点 return new ListNode(2, new ListNode(5, new ListNode(1, new ListNode(null))))
+     * 2 -> 5 -> 1
+     * 98
+     * 54
+     * 152
+     */
+
+    static int carry = 0;
+
+    public static ListNode digui(ListNode l1, ListNode l2) {
+
+        int sum = carry;
+
+        // 定义递归退出边界
+        if (l1 == null && l2 == null && carry == 0) {
+            return null;
+        }
+
+        if (l1 != null) {
+            sum += l1.val;
+            l1 = l1.next;
+        }
+        if (l2 != null) {
+            sum += l2.val;
+            l2 = l2.next;
+        }
+
+        carry = sum / 10;
+
+        return new ListNode(sum % 10, digui(l1, l2));
+    }
+
+
+    public static class ListNode {
         int val;
         ListNode next;
 
