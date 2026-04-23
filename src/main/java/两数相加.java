@@ -10,6 +10,7 @@
 
 /**
  * 有时候我们正着想太抽象，不如从结果反推，怎么通过一个函数的嵌套调用组织出我想要的效果，然后去尝试实现这个函数，或许会好一点。
+ * 写递归尽量不要用全局变量，遵循函数式思想，无副作用。
  */
 public class 两数相加 {
 
@@ -52,7 +53,8 @@ public class 两数相加 {
 
         // ListNode listNode = addTwoNumbers(l3, l6);
         // ListNode listNode = addTwoNumbers(l8, l9); // 801
-        ListNode listNode = digui(l11, l13); // 251
+        // ListNode listNode = digui(l11, l13); // 251
+        ListNode listNode = diGuiPlus(l11, l13); // 251
         while (listNode != null) {
             System.out.print(listNode.val);
             listNode = listNode.next;
@@ -169,6 +171,26 @@ public class 两数相加 {
         carry = sum / 10;
 
         return new ListNode(sum % 10, digui(l1, l2));
+    }
+
+    public static ListNode diGuiPlus(ListNode l1, ListNode l2) {
+        return dfs(l1, l2, 0);
+    }
+
+    public static ListNode dfs(ListNode l1, ListNode l2, int carry) {
+        if (l1 == null && l2 == null && carry == 0) {
+            return null;
+        }
+        int sum = carry;
+        if (l1 != null) {
+            sum += l1.val;
+            l1 = l1.next;
+        }
+        if (l2 != null) {
+            sum += l2.val;
+            l2 = l2.next;
+        }
+        return new ListNode(sum % 10, dfs(l1, l2, sum / 10));
     }
 
 
