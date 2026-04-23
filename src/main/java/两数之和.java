@@ -18,6 +18,12 @@ import java.util.*;
  * 输入：nums = [3,3], target = 6
  * 输出：[0,1]
  **/
+
+/**
+ * 哈希表能提高查询效率，有时候可以牺牲一些空间，换来O（1）的查询。
+ * 不要着急构建全量哈希表。
+ * 基础写好了，小小的改动或许只需要调整下数据结构就可以跟上新的需求。
+ */
 public class 两数之和 {
     public static void main(String[] args) {
         int[] nums1 = new int[]{1, 2, 6, 11, 4, 5, 17, 7, 5, 4, 10, 3, 3};
