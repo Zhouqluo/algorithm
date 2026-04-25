@@ -37,7 +37,7 @@ import java.util.Stack;
 // 左括号入栈，右括号出栈并匹配，最终判断 stack.isEmpty() → 栈为空则合法
 // 启发：栈是处理“嵌套结构”的常用工具
 // 适用场景：括号、HTML/XML 标签、表达式嵌套
-public class 有效的括号 {
+public class 有效的括号20 {
 
     public static void main(String[] args) {
         String s1 = "()";

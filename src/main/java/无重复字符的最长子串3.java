@@ -28,7 +28,7 @@ import java.util.HashSet;
  * 思考方式	  “窗口保持合法”	           “固定左边界，尽量探寻右边界”
  * 窗口状态	  窗口总是合法	           窗口可能每次左边界移动后先缩小，再扩张右边界
  */
-public class 无重复字符的最长子串 {
+public class 无重复字符的最长子串3 {
 
     public static void main(String[] args) {
         String str = "abcabecddbb";

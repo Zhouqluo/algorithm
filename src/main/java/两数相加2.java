@@ -12,7 +12,7 @@
  * 有时候我们正着想太抽象，不如从结果反推，怎么通过一个函数的嵌套调用组织出我想要的效果，然后去尝试实现这个函数，或许会好一点。
  * 写递归尽量不要用全局变量，遵循函数式思想，无副作用。
  */
-public class 两数相加 {
+public class 两数相加2 {
 
     public static void main(String[] args) {
         ListNode l1 = new ListNode(3, null);
